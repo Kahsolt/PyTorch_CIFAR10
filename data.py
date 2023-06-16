@@ -54,7 +54,7 @@ class CIFAR10Data(pl.LightningDataModule):
                 T.Normalize(self.mean, self.std),
             ]
         )
-        dataset = CIFAR10(root=self.hparams.data_dir, train=True, transform=transform)
+        dataset = CIFAR10(root=self.hparams.data_dir, train=True, transform=transform, download=True)
         dataloader = DataLoader(
             dataset,
             batch_size=self.hparams.batch_size,
@@ -72,7 +72,7 @@ class CIFAR10Data(pl.LightningDataModule):
                 T.Normalize(self.mean, self.std),
             ]
         )
-        dataset = CIFAR10(root=self.hparams.data_dir, train=False, transform=transform)
+        dataset = CIFAR10(root=self.hparams.data_dir, train=False, transform=transform, download=True)
         dataloader = DataLoader(
             dataset,
             batch_size=self.hparams.batch_size,

@@ -11,19 +11,19 @@ from cifar10_models.vgg import vgg11_bn, vgg13_bn, vgg16_bn, vgg19_bn
 from schduler import WarmupCosineLR
 
 all_classifiers = {
-    "vgg11_bn": vgg11_bn(),
-    "vgg13_bn": vgg13_bn(),
-    "vgg16_bn": vgg16_bn(),
-    "vgg19_bn": vgg19_bn(),
-    "resnet18": resnet18(),
-    "resnet34": resnet34(),
-    "resnet50": resnet50(),
-    "densenet121": densenet121(),
-    "densenet161": densenet161(),
-    "densenet169": densenet169(),
-    "mobilenet_v2": mobilenet_v2(),
-    "googlenet": googlenet(),
-    "inception_v3": inception_v3(),
+    "vgg11_bn":     vgg11_bn,
+    "vgg13_bn":     vgg13_bn,
+    "vgg16_bn":     vgg16_bn,
+    "vgg19_bn":     vgg19_bn,
+    "resnet18":     resnet18,
+    "resnet34":     resnet34,
+    "resnet50":     resnet50,
+    "densenet121":  densenet121,
+    "densenet161":  densenet161,
+    "densenet169":  densenet169,
+    "mobilenet_v2": mobilenet_v2,
+    "googlenet":    googlenet,
+    "inception_v3": inception_v3,
 }
 
 
@@ -35,7 +35,7 @@ class CIFAR10Module(pl.LightningModule):
         self.criterion = torch.nn.CrossEntropyLoss()
         self.accuracy = Accuracy()
 
-        self.model = all_classifiers[self.hparams.classifier]
+        self.model = all_classifiers[self.hparams.classifier]()
 
     def forward(self, batch):
         images, labels = batch
